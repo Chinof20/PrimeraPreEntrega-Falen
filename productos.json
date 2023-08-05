@@ -1,0 +1,22 @@
+[
+  {
+    "id": 1,
+    "title": "producto1barato",
+    "description": "",
+    "code": "",
+    "price": "19",
+    "status": "",
+    "stock": "",
+    "category": ""
+  },
+  {
+    "id": 2,
+    "title": "product2carisimo",
+    "description": "",
+    "code": "",
+    "price": "19",
+    "status": "",
+    "stock": "",
+    "category": ""
+  }
+]
