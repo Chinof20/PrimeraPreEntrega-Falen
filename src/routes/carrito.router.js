@@ -13,10 +13,14 @@ router.post('/api/carts', async(req, res) => {
 // Ruta para mostrar los productos de un carrito especificado por su ID
 router.get('/api/carts/:cid', async(req, res) => {
     const cid = parseInt(req.params.cid);
-    console.log(cid)
     const carritoBuscado = await contenedor.getById(cid)
-    const productosEnCarrito = carritoBuscado.products
-    return res.json(productosEnCarrito);
+    console.log(carritoBuscado)
+    if(carritoBuscado){
+        const productosEnCarrito = carritoBuscado.products
+        return res.json(productosEnCarrito);
+    }else{
+        return res.status(400).json({ error: 'No existe el carrito con el ID solicitado.' });
+    }
 });
 
 // Ruta para agregar productos a un carrito especificado
@@ -34,10 +38,8 @@ router.post('/api/carts/:cid/product/:pid', async(req, res) => {
         productosEnCarrito.push({ product: pid, quantity: 1});
     }
     const updateFields = {id: cid, products: productosEnCarrito}
-    const productModify = await contenedor.modifyById(cid, updateFields)
+    await contenedor.modifyById(cid, updateFields)
 
-
-    console.log(productModify)
     res.json({ message: 'producto agregado al carrito correctamente.' });
 });
 
